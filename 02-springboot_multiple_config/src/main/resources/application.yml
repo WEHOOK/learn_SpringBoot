@@ -1,0 +1,36 @@
+##################################### common config : ####################################
+#spring.application.name=demo
+## 应用服务web访问端口
+#server.port=8080
+## ActuatorWeb访问端口
+#management.server.port=8081
+#management.endpoints.jmx.exposure.include=*
+#management.endpoints.web.exposure.include=*
+#management.endpoint.health.show-details=always
+## spring cloud access&secret config
+## 可以访问如下地址查看: https://usercenter.console.aliyun.com/#/manage/ak
+#alibaba.cloud.access-key=****
+#alibaba.cloud.secret-key=****
+my:
+    name: smith
+    age: 12
+my1:
+    name: smith1
+    age: 15
+    number: ${random.int}
+    uuid: ${random.uuid}
+    max: ${random.int(10)}
+    value: ${random.value}
+    hehe: hello,${my.name}
+
+server:
+    port: 8080
+spring:
+    profiles:
+        active: dev
+
+#my.name=smith
+#my.age=18
+
+
+
