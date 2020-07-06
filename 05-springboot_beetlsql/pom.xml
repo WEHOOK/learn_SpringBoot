@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>05-springboot_beetlsql</artifactId>
+    <name>5.springboot整合beetlsql</name>
     <dependencies>
 
         <dependency>

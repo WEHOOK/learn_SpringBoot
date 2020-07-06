@@ -14,7 +14,7 @@
     <groupId>com.smith</groupId>
     <artifactId>03-springboot_jdbc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot_jdbc</name>
+    <name>3.springboot整合jdbc</name>
     <description>Jdbc Demo project for Spring Boot</description>
 
     <properties>

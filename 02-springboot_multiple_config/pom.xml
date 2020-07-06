@@ -14,7 +14,7 @@
     <groupId>com.example</groupId>
     <artifactId>02-springboot_multiple_config</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot_multiple_config</name>
+    <name>2.springboot中关于配置文件相关</name>
     <description>multiple_config Demo project for Spring Boot</description>
 
     <properties>

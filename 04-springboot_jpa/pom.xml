@@ -14,7 +14,7 @@
     <groupId>com.smith</groupId>
     <artifactId>04-springboot_jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot_jpa</name>
+    <name>4.springboot整合jpa</name>
     <description>Jpa Demo project for Spring Boot</description>
 
     <properties>
