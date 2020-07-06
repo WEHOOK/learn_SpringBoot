@@ -21,6 +21,8 @@
         <module>04-springboot_jpa</module>
         <module>05-springboot_beetlsql</module>
         <module>06-springboot_mybatis</module>
+        <module>07-springboot_mongoDB</module>
+
     </modules>
 
 
