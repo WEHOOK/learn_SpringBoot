@@ -27,4 +27,9 @@ public interface UserMapper {
     @Select("select * from sys_user")
     List<UserEntity> findUserList();
 
+    @Update("update user_1 set money=money - #{money} ")
+    int updateTran1(Integer money);
+
+    @Update("update user_2 set money=money + #{money} ")
+    int updateTran2(Integer money);
 }

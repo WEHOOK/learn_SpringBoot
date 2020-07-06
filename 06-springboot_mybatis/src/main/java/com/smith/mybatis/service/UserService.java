@@ -20,4 +20,6 @@ public interface UserService {
     UserEntity findUserById(int id);
 
     List<UserEntity> findUserList();
+
+    void updateTransactional(String money);
 }

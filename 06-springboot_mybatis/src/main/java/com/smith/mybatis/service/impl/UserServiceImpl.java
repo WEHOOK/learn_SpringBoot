@@ -5,6 +5,7 @@ import com.smith.mybatis.entity.UserEntity;
 import com.smith.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,5 +43,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> findUserList() {
         return userDao.findUserList();
+    }
+
+    /**
+     * 开启事务
+     * @param money
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void  updateTransactional(String money) {
+
+        Integer m = Integer.valueOf(money);
+        userDao.updateTran1(m);
+        int i = 1 /0;
+        userDao.updateTran2(m);
     }
 }

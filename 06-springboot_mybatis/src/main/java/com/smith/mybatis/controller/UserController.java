@@ -58,4 +58,14 @@ public class UserController {
     }
 
 
+    /**
+     * 开启事务
+     * @param money
+     */
+    @PostMapping(value = "/update/transactional")
+    public void updateTransational(String money){
+        userService.updateTransactional(money);
+    }
+
+
 }

@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>06-springboot_mybatis</artifactId>
+    <name>6.springboot整合mybatis并实现基本生声明式事务</name>
 
     <dependencies>
         <dependency>
