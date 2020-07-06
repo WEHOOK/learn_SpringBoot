@@ -22,7 +22,7 @@
         <module>05-springboot_beetlsql</module>
         <module>06-springboot_mybatis</module>
         <module>07-springboot_mongoDB</module>
-
+        <module>08-springboot_redis</module>
     </modules>
 
 
