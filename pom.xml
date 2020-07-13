@@ -23,6 +23,8 @@
         <module>06-springboot_mybatis</module>
         <module>07-springboot_mongoDB</module>
         <module>08-springboot_redis</module>
+        <module>09-springboot_swagger2</module>
+        <module>10-springboot_springcache</module>
     </modules>
 
 
