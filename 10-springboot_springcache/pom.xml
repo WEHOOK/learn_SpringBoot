@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>10-springboot_springcache</artifactId>
-    <name>springboot使用spring cache</name>
+    <name>10.springboot使用spring cache</name>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
