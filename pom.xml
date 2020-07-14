@@ -25,6 +25,7 @@
         <module>08-springboot_redis</module>
         <module>09-springboot_swagger2</module>
         <module>10-springboot_springcache</module>
+        <module>11-springboot_redis_mq</module>
     </modules>
 
 
