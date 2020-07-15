@@ -26,6 +26,7 @@
         <module>09-springboot_swagger2</module>
         <module>10-springboot_springcache</module>
         <module>11-springboot_redis_mq</module>
+        <module>12-springboot_rabbitmq</module>
     </modules>
 
 
