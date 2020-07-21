@@ -27,6 +27,7 @@
         <module>10-springboot_springcache</module>
         <module>11-springboot_redis_mq</module>
         <module>12-springboot_rabbitmq</module>
+        <module>13-springboot_shiro</module>
     </modules>
 
 
