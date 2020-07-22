@@ -1,5 +1,7 @@
 package com.smith.shiro.controller;
 
+import com.smith.shiro.common.BaseResponse;
+import com.smith.shiro.common.StatusCode;
 import com.smith.shiro.entity.UserInfo;
 import com.smith.shiro.service.UserInfoService;
 import org.apache.shiro.SecurityUtils;
@@ -10,8 +12,10 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -25,64 +29,73 @@ public class IndexController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @GetMapping({"/","/tologin"})
-    public String toLogin(){
+    @GetMapping("/tologin")
+    public String toLogin() {
         return "login";
     }
 
     @GetMapping("/getuser")
     @ResponseBody
-    public UserInfo getUser(String name){
+    public UserInfo getUser(String name) {
         return userInfoService.queryByName(name);
     }
 
     @PostMapping("/login")
-    public String login(String username,String password){
-
+    @ResponseBody
+    public BaseResponse login(String username, String password,Boolean rememberMe) {
+        BaseResponse response = new BaseResponse(StatusCode.Success);
         try {
 
             //获取当前用户
             Subject subject = SecurityUtils.getSubject();
             // 用户登录数据
-            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username,password);
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password,rememberMe);
             // 执行登录方法，没有异常就登录成功了
             subject.login(usernamePasswordToken);
-            return "index";
 
         } catch (UnknownAccountException e) {
             e.printStackTrace();
             System.out.println("用户名不存在");
-        }
-        catch (IncorrectCredentialsException e){
+            return new BaseResponse(StatusCode.AccountValidateFail, e.getMessage());
+        } catch (IncorrectCredentialsException e) {
             System.out.println("密码错误");
+            return new BaseResponse(StatusCode.AccountPasswordNotMatch, e.getMessage());
         }
-        return "login";
+        return response;
     }
 
+    @RequestMapping("/")
+    public String redirectIndex() {
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/index")
+    public String index(Model model) {
+        UserInfo user = (UserInfo) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
+        return "index";
+    }
 
     @GetMapping("/add")
-    public String add(){
+    public String add() {
         return "add";
     }
 
     @GetMapping("/del")
-    public String del(){
-        return "del";
+    public String del() {
+        return "delete";
     }
 
     @GetMapping("/unauthorized")
-    public String unauthorized(){
+    public String unauthorized() {
         return "unauthorized";
     }
 
     @GetMapping("logout")
-    public String logout(){
-        Subject subject = SecurityUtils.getSubject();
-        Session session = subject.getSession();
-        session.setAttribute("loginuser",null);
-        return "login";
+    public String logout() {
+        SecurityUtils.getSubject().logout();
+        return "redirect:/tologin";
     }
-
 
 
 }

@@ -7,10 +7,10 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 /**
  * @author gy
@@ -24,14 +24,8 @@ public class UserRealm extends AuthorizingRealm {
     // 授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-
         System.out.println("授权");
         SimpleAuthorizationInfo simInfo = new SimpleAuthorizationInfo();
-        //获取当前用户对象
-        Subject subject = SecurityUtils.getSubject();
-        // 获取用户信息
-        UserInfo userInfo = (UserInfo) subject.getPrincipal();
-        simInfo.addStringPermission(userInfo.getPerm());
         return simInfo;
     }
 
@@ -39,28 +33,27 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("认证");
-        //获取当前的用户
-        Subject subject = SecurityUtils.getSubject();
+
         // 获取登录信息
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
+
         System.out.println(userToken.getUsername());
 
         //获取用户名 密码  数据库取
         UserInfo userInfo = userInfoService.queryByName(userToken.getUsername());
-        System.out.println(userInfo);
 
-        if(null == userInfo){
-            return null;
+        if (null == userInfo) {
+            throw new UnknownAccountException("用户名或密码错误！");
         }
-        Session session = subject.getSession();
-        session.setAttribute("loginuser",userInfo);
 
+        String password = String.valueOf(userToken.getPassword());
         // 判断登录的用户名密码
-        if(!userToken.getUsername().equals(userInfo.getUsername())){
-            return null;
+        if (!password.equals(userInfo.getPassword())) {
+            throw new IncorrectCredentialsException("用户名或密码错误");
         }
+
 
         //密码认证，shiro做
-        return new SimpleAuthenticationInfo(userInfo,userInfo.getPassword(),"");
+        return new SimpleAuthenticationInfo(userInfo, userInfo.getPassword(), "");
     }
 }
