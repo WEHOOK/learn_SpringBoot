@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+<p>你好！[[${user.username}]]</p>
+<a th:href="@{/logout}">注销</a>
+<div>
+    <a th:href="@{/list}">获取用户信息</a>
+    <a th:href="@{/add}">添加用户</a>
+    <a th:href="@{/del}">删除用户</a>
+</div>
+</body>
+</html>
