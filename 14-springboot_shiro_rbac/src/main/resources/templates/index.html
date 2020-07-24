@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
@@ -9,9 +10,9 @@
 <p>你好！[[${user.username}]]</p>
 <a th:href="@{/logout}">注销</a>
 <div>
-    <a th:href="@{/list}">获取用户信息</a>
-    <a th:href="@{/add}">添加用户</a>
-    <a th:href="@{/del}">删除用户</a>
+    <a shiro:hasPermission="user:user" th:href="@{/list}">获取用户信息</a>
+    <a shiro:hasPermission="user:add" th:href="@{/add}">添加用户</a>
+    <a shiro:hasPermission="user:del" th:href="@{/del}">删除用户</a>
 </div>
 </body>
 </html>
