@@ -29,6 +29,7 @@
         <module>12-springboot_rabbitmq</module>
         <module>13-springboot_shiro</module>
         <module>14-springboot_shiro_rbac</module>
+        <module>15-springboot_shiro_session</module>
     </modules>
 
 
